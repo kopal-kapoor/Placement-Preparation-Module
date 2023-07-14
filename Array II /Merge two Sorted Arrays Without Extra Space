@@ -1,10 +1,20 @@
-class Solution:
-    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        """
-        Do not return anything, modify nums1 in-place instead.
-        """
-        j=0
-        for i in range(m,len(nums1)):
-            nums1[i]=nums2[j]
-            j=j+1
-        nums1.sort()
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        for(int i=m-1,j=0;i>=0 && j<n; i--,j++)
+        {
+            if(nums1[i]>nums2[j])
+             {
+                 swap(nums1[i],nums2[j]);
+                 i--;j++;
+             }
+             else if(nums1[i]<nums2[j])
+             break;
+        }
+      
+        for(int i=m,j=0;i<m+n;i++,j++){
+            nums1[i]=nums2[j];
+        }
+        sort(nums1.begin(),nums1.end());
+    }
+};
